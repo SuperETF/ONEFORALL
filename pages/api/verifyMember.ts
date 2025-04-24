@@ -39,7 +39,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(403).json({ error: '이미 사용된 쿠폰입니다.' });
     }
 
-    // 사용 처리
     const { error: updateError } = await supabase
       .from('verified_members')
       .update({ used: true })
@@ -57,7 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (e instanceof Error) {
       console.error('🔥 서버 에러:', e.message);
     } else {
-      console.error('🔥 알 수 없는 서버 에러 발생:', e);
+      console.error('🔥 알 수 없는 에러:', e);
     }
     return res.status(500).json({ error: '서버 에러가 발생했습니다.' });
   }
