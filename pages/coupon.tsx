@@ -60,8 +60,15 @@ const Coupon = () => {
           <div className="text-center text-gray-400 text-sm">
             <p className="mb-2">쿠폰 사용 방법</p>
             <p className="mb-1">1. 쿠폰 번호를 복사하세요</p>
-            <p className="mb-1">2. 앱 내 쿠폰 등록 페이지로 이동하세요</p>
-            <p>3. 복사한 쿠폰 번호를 붙여넣기 하세요</p>
+            <p className="mb-1">2. 원포올 구매 페이지에서 쿠폰을 입력하세요</p>
+            <a
+              href="https://betterthanclass.com/?idx=7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md font-medium transition duration-300"
+            >
+              구매 페이지 이동하기
+            </a>
           </div>
         </div>
       </div>
