@@ -1,5 +1,5 @@
 // pages/api/verifyMember.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiResponse, NextApiRequest } from 'next';
 import supabase from '@/lib/supabaseClient';
 
 interface VerifyMemberBody {
@@ -8,17 +8,20 @@ interface VerifyMemberBody {
 }
 
 type SuccessResponse = { coupon: string };
-type ErrorResponse = { error: string };
+type ErrorResponse   = { error: string };
+
+// ① NextApiRequest의 body를 강제 재정의
+type NextApiRequestWithBody<T> = Omit<NextApiRequest, 'body'> & { body: T };
 
 export default async function handler(
-  req: NextApiRequest,
+  req: NextApiRequestWithBody<VerifyMemberBody>,
   res: NextApiResponse<SuccessResponse | ErrorResponse>
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: '지원하지 않는 메서드입니다.' });
   }
 
-  const { name, phone } = req.body as VerifyMemberBody;
+  const { name, phone } = req.body; // 이제 any 아님
 
   if (!name || !phone) {
     return res.status(400).json({ error: '이름과 전화번호를 입력해주세요.' });
